@@ -693,8 +693,14 @@ class Readline:ver<0.1.5> {
         tgetnum('');
       }
       when 'darwin' {
+        # needs homebrew installed version of readline
+        # macOS ships with incompatible libedit
         $library-match = rx/:i libreadline\.(\d+)\.dylib $/;
-      }
+        # set version to v0.0 so we can check if it was found
+        $version = v0.0;
+        # homebrew directory
+        @library-path = ('/usr/local/opt/readline/lib')
+    }
     }
 
     # Search each of the LIBRARY-PATHS paths for libreadline.
@@ -717,6 +723,16 @@ class Readline:ver<0.1.5> {
           my sub tgetnum(Str --> int32) is native('ncurses') { * }
           tgetnum('');
         }
+      }
+      when 'macosx' {
+        # die if we didn't find sometging
+        # currently only supports the location from Homebrew
+        if $version ~~ v0.0 {
+          die('On macOS Perl6::Readline requires installing Readline via Homebrew');
+        }
+      
+        # if we ever support another location, we will need to test where the file is
+        return ("@library-path[0]/libreadline.$version.dylib");
       }
     }
 
