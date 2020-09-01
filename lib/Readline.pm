@@ -724,7 +724,7 @@ class Readline:ver<0.1.5> {
           tgetnum('');
         }
       }
-      when 'macosx' {
+      when rx/"macos" | "darwin"/ {
         # die if we didn't find sometging
         # currently only supports the location from Homebrew
         if $version ~~ v0.0 {
