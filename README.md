@@ -1,6 +1,8 @@
 Readline
 =======
 
+##### *Note: This README will soon be updated based on new development priorities*
+
 Readline provides a Perl 6 interface to libreadline.
 
 XXX This will probably be a frontend to Readline::Gnu when that's factored out.
@@ -18,17 +20,39 @@ For those of you on Linux Debian and Linux-alike systems, you should be able to 
 ```
 (I'd prefer to use LibraryCheck, but it fails inside the 'is native()' method call.)
 
+
+On Macs, use Hombrew to install readline. If you installed Rakudo-Star with homebrew after Sept. 1 it should already be there.
+
+If not you can install just Readline
+
+```
+    brew install readline
+```
+
+or update your rakudo-star install.
+
+```
+    brew upgrade rakudo-star
+```
+
+
+
 * Using zef (a module management tool bundled with Rakudo Star):
+
+
 
 ```
     zef update && zef install Readline
 ```
+
 
 Or alternatively installing it from a checkout of this repo with zef:
 
 ```
     zef install .
 ```
+
+
 
 ## Usage
 
@@ -45,6 +69,7 @@ To run tests:
 ## Author
 
 Jeffrey Goff, DrForr on #perl6, https://github.com/drforr/
+(Recently taken over by Daniel Lathrop (fooist), https://github.com/fooist/
 
 ## License
 
